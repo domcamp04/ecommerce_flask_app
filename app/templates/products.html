@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+
+<div class="container d-flex-wrap">
+    <div class="card bg-secondary" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='angel_hair.jpeg')}}" class="card-img-top" alt="angel hair pasta">
+        <div class="card-body">
+          <h5 class="card-title text-info">Angel Hair</h5>
+          <p class="card-info text-info">Angel hair pasta is a long, thin noodle with a rounded shape. Although it resembles spaghetti – another long, thin pasta – angel hair is much finer.</p>
+          <a href="#" class="btn btn-info">Add To Cart</a>
+          <a href="/angel-hair" class="btn btn-info" role="button">More Information</a>
+        </div>
+      </div>
+    <div class="card bg-secondary" style="width: 18rem;">
+        <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
+        <div class="card-body">
+          <h5 class="card-title text-info">Penne</h5>
+          <p class="card-info text-info">Penne is one of the most famous Italian pasta shapes and is loved across Italy and the world. Penne translates to the word “pen”, and gets its name from its shape – a short cylinder-shaped pasta that has angled edges. ... Penne Rigate pairs nicely with chunky meat, chunky vegetable, cream, or oil based sauces.</p>
+          <a href="#" class="btn btn-info">Add To Cart</a>
+          <a href="/penne" class="btn btn-info" role="button">More Information</a>
+        </div>
+      </div>
+    <div class="card bg-secondary" style="width: 18rem;">
+        <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
+        <div class="card-body">
+          <h5 class="card-title text-info">Rigatoni</h5>
+          <p class="card-info text-info">Rigatoni, which comes from the word “rigato” meaning ridged, are short, wide tubes of pasta that have ridges on the outside, but are smooth on the inside. Rigatoni are perfect for big chunkier sauces as their ridges and wide center help capture the sauce perfectly.</p>
+          <a href="#" class="btn btn-info">Add To Cart</a>
+          <a href="/rigatoni" class="btn btn-info" role="button">More Information</a>
+        </div>
+      </div>
+    <div class="card bg-secondary" style="width: 18rem;">
+        <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
+        <div class="card-body">
+          <h5 class="card-title text-info">Campanelle</h5>
+          <p class="card-info text-info">Campanelle has a gentle but sturdy shape, with an Italian name that translates to “bellflowers” in English. The pasta has thin, fluted, petal-like edges and a hollow center which is perfect for capturing sauce. It also goes well with meat sauces, fish-based sauces, or robust tomato-based sauces.</p>
+          <a href="#" class="btn btn-info">Add To Cart</a>
+          <a href="/campanelle" class="btn btn-info" role="button">More Information</a>
+        </div>
+    </div>
+    <div class="card bg-secondary" style="width: 18rem;">
+        <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
+        <div class="card-body">
+          <h5 class="card-title text-info">Marinara</h5>
+          <p class="card-info text-info">Our home-made marinara sauce is a tasteful blend of tomatoes, garlic, herbs, and onions. We also include a special blend of spices and a dash of red wine from our local vineyard.</p>
+          <a href="#" class="btn btn-info">Add To Cart</a>
+          <a href="/marinara" class="btn btn-info" role="button">More Information</a>
+        </div>
+      </div>
+    <div class="card bg-secondary" style="width: 18rem;">
+        <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
+        <div class="card-body">
+          <h5 class="card-title text-info">Vodka Sauce</h5>
+          <p class="card-info text-info">Our home-made vodka sauces is made from a smooth tomato base, we then include vodka, italian herbs, and heavy cream. Along with a few other secret ingredients our vodka sauce is a favorite among many!</p>
+          <a href="#" class="btn btn-info">Add To Cart</a>
+          <a href="/vodka-sauce" class="btn btn-info" role="button">More Information</a>
+        </div>
+      </div>
+  </div>
+{% endblock %}

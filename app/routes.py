@@ -73,3 +73,32 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/products')
+def view_products():
+    return render_template('products.html')
+
+
+@app.route('/angel-hair')
+def angel_hair():
+    return render_template('angelhair.html')
+
+@app.route('/penne')
+def penne():
+    return render_template('penne.html')
+
+@app.route('/rigatoni')
+def rigatoni():
+    return render_template('rigatoni.html')
+
+@app.route('/campanelle')
+def campanelle():
+    return render_template('campanelle.html')
+
+@app.route('/marinara')
+def marinara():
+    return render_template('marinara.html')
+
+@app.route('/vodka-sauce')
+def codka_sauce():
+    return render_template('vodka_sauce.html')
