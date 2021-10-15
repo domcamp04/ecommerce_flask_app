@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Welcome to</h3>
+<h3>Welcome {{ current_user.username }}</h3>
 <h2>Pasta La Vista</h2>
 <div class="card bg-secondary" style="width: 18rem;">
     <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
