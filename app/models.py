@@ -1,6 +1,3 @@
-from enum import unique
-
-from sqlalchemy.orm import backref
 from app import db, login_manager
 import os
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -12,12 +9,12 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 cart = db.Table('cart',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.user_id')),
+    db.Column('id', db.Integer, db.ForeignKey('user.id')),
     db.Column('product_id', db.Integer, db.ForeignKey('products.product_id'))
 )
 
 class User(db.Model, UserMixin):
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), nullable=False, unique=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(256), nullable=False)

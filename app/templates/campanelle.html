@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="card bg-secondary" style="width: 18rem;">
-    <img src="/app/static/images/angel_hair.jpeg" class="card-img-top" alt="angel hair pasta">
+    <img src="{{ url_for('static', filename='campanelle.jpeg')}}" class="card-img-top" alt="angel hair pasta">
     <div class="card-body">
-      <h5 class="card-title text-info">Campanelle</h5>
-      <p class="card-info text-info">Campanelle has a gentle but sturdy shape, with an Italian name that translates to “bellflowers” in English. The pasta has thin, fluted, petal-like edges and a hollow center which is perfect for capturing sauce. It also goes well with meat sauces, fish-based sauces, or robust tomato-based sauces.</p>
-      <a href="#" class="btn btn-info">Add To Cart</a>
+      <h5 class="card-title">Campanelle</h5>
+      <p class="card-info">Campanelle has a gentle but sturdy shape, with an Italian name that translates to “bellflowers” in English. The pasta has thin, fluted, petal-like edges and a hollow center which is perfect for capturing sauce. It also goes well with meat sauces, fish-based sauces, or robust tomato-based sauces.</p>
+      <footer class="blockquote-footer text-dark"> $5.99 </footer>
+      {% if current_user.is_authenticated %}
+      <a href="#" class="btn btn-success">Add To Cart</a>
+      {% endif %}
     </div>
 </div>
 {% endblock %}

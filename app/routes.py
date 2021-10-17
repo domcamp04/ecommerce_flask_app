@@ -6,7 +6,9 @@ from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    title='Home'
+    product = Products.query.all()
+    return render_template('index.html', title=title, product=product)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -37,7 +39,7 @@ def register():
         # Flash a success message thanking them for signing up
         flash(f'Thank you {username}, enjoy your shopping experience!', 'success')
 
-        return redirect(url_for('index'))
+        return redirect(url_for(''))
 
     return render_template('register.html', form=register_form)
 
@@ -63,7 +65,7 @@ def login():
 
         flash(f'Welcome {user.username}. You have successfully logged in.', 'success')
 
-        return redirect(url_for('index'))
+        return redirect(url_for('view_products'))
 
     return render_template('login.html', login_form=form)
 
@@ -76,29 +78,31 @@ def logout():
 
 @app.route('/products')
 def view_products():
-    return render_template('products.html')
+    product = Products.query.all()
+    title='Products'
+    return render_template('products.html', title=title, product=product)
 
 
-@app.route('/angel-hair')
+@app.route('/Angel Hair')
 def angel_hair():
     return render_template('angelhair.html')
 
-@app.route('/penne')
+@app.route('/Penne')
 def penne():
     return render_template('penne.html')
 
-@app.route('/rigatoni')
+@app.route('/Rigatoni')
 def rigatoni():
     return render_template('rigatoni.html')
 
-@app.route('/campanelle')
+@app.route('/Campanelle')
 def campanelle():
     return render_template('campanelle.html')
 
-@app.route('/marinara')
+@app.route('/Marinara')
 def marinara():
     return render_template('marinara.html')
 
-@app.route('/vodka-sauce')
+@app.route('/Vodka Sauce')
 def codka_sauce():
     return render_template('vodka_sauce.html')
