@@ -7,7 +7,9 @@
 
 <center><img class="mb-4 size-250px" src="{{ url_for('static', filename='pasta_shop.jpeg')}}" alt="Pasta Shop" height="400" width="950"></center>
 {% else %}
-<h4 class="fw-bold fs-2">Welcome to Pasta La Vista, please register using the link at the top to start shopping.</h4>
+<center><h4 class="fw-bold fs-2 mt-4">Welcome to Pasta La Vista, please register using the link at the top to start shopping.</h4></center>
+
+<center><img class="mb-4 size-250px" src="{{ url_for('static', filename='pasta_shop.jpeg')}}" alt="Pasta Shop" height="400" width="950"></center>
 {% endif %}
 
 {% for r in product %}
