@@ -22,7 +22,21 @@
 {% endfor %}
 
 {% else %}
-<h4 class="fw-bold fs-2">Please register using link above to view our products page.</h4>
+<h4 class="fw-bold fs-2">Please register using link above to purchase products.</h4>
+{% for r in product %}
+    <div class="card text-center bg-secondary text-white mb-3">
+        <div class="card-header">
+        {{ r.prod_name }}
+        </div>
+        <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>{{ r.description }}</p>
+            <footer class="blockquote-footer text-dark"> ${{ r.price }} </footer>
+        </blockquote>
+        <a href="/{{r.prod_name}}" class="btn btn-primary">More Information</a>
+        </div>
+    </div>
+{% endfor %}
 {% endif %}
 
 {% endblock %}
