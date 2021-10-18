@@ -3,18 +3,18 @@
 {% block content %}
 
 {% if current_user.is_authenticated %}
-<center><h4 class="fw-bold fs-1 mt-4 ">Welcome to Pasta La Vista {{ current_user.username }}</h4></center>
+<center><h4 class="fw-bold fs-1 mt-4 font_meie_script">Welcome to Pasta La Vista {{ current_user.username }}</h4></center>
 
-<center><img class="mb-4 size-250px" src="{{ url_for('static', filename='pasta_shop.jpeg')}}" alt="Pasta Shop" height="400" width="950"></center>
+<center><img class="mb-4" height="" src="{{ url_for('static', filename='pasta-yes.jpeg')}}" alt="Pasta Shop" ></center>
 {% else %}
-<center><h4 class="fw-bold fs-2 mt-4">Welcome to Pasta La Vista, please register using the link at the top to start shopping.</h4></center>
+<center><h4 class="fw-bold fs-2 mt-4 font_meie_script">Welcome to Pasta La Vista, please register using the link at the top to start shopping.</h4></center>
 
-<center><img class="mb-4 size-250px" src="{{ url_for('static', filename='pasta_shop.jpeg')}}" alt="Pasta Shop" height="400" width="950"></center>
+<center><img class="mb-4 size-250px" src="{{ url_for('static', filename='pasta-yes.jpeg')}}" alt="Pasta Shop"></center>
 {% endif %}
 
 {% for r in product %}
     <div class="card text-center bg-secondary text-white mb-3">
-        <div class="card-header">
+        <div class="card-header font_meie_script">
         {{ r.prod_name }}
         </div>
         <div class="card-body">

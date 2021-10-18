@@ -1,8 +1,9 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash
 from app.forms import UserInfoForm, LoginForm
-from app.models import User, Products
+from app.models import User, Products, cart, MyCart
 from flask_login import login_user, logout_user, current_user, login_required
+
 
 @app.route('/')
 def index():
@@ -106,3 +107,28 @@ def marinara():
 @app.route('/Vodka Sauce')
 def codka_sauce():
     return render_template('vodka_sauce.html')
+
+@app.route('/cart', methods=['GET', 'POST'])
+def add_cart():
+    product = MyCart.query.all()
+    # newcart = MyCart(MyCart.name, MyCart.price, MyCart.user_id)
+    # db.session.add(newcart)
+    # db.session.commit()
+    return render_template('my_cart.html',product=product)
+
+# def getproductitem():
+#     itemid = Products.id
+#     productname = Products.name
+#     productname = MyCart(product_id=itemid)
+#     db.session.add(MyCart)
+#     db.session.commit()
+
+# @app.route('/cart/<int:product_id>', methods=['POST'])
+# def add_to_cart(product_id):
+
+#     product = Products.query.filter(Products.id == product_id)
+#     cart_item = MyCart(product=product)
+#     db.session.add(MyCart)
+#     db.session.commit()
+
+#     return render_template('my_cart.html', product=product)

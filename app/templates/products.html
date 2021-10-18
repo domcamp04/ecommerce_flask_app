@@ -3,11 +3,18 @@
 {% block content %}
 
 {% if current_user.is_authenticated %}
-<h4 class="fw-bold fs-3 mt-4 mb-4">Hello {{ current_user.username }}: Enjoy our wide range of hand-crafted products.</h4>
+<h4 class="fw-bold fs-3 mt-4 mb-4 font_meie_script">Hello {{ current_user.username }}: Enjoy our wide range of hand-crafted products.</h4>
 
 {% for r in product %}
+<script>
+  function addToCart(product_id) {
+      fetch('[http://127.0.0.1:5000/]/products/prod_id', 
+          {method: 'POST'}
+      )
+  }
+</script>
     <div class="card text-center bg-secondary text-white mb-3">
-        <div class="card-header">
+        <div class="card-header font_meie_script">
         {{ r.prod_name }}
         </div>
         <div class="card-body">
@@ -15,17 +22,17 @@
             <p>{{ r.description }}</p>
             <footer class="blockquote-footer text-dark"> ${{ r.price }} </footer>
         </blockquote>
-        <a href="#" class="btn btn-success">Add to Cart</a>
+        <button onclick="addToCart({product_id})" type="button" class="btn btn-success">Add to Cart</button>
         <a href="/{{r.prod_name}}" class="btn btn-primary">More Information</a>
         </div>
     </div>
 {% endfor %}
 
 {% else %}
-<h4 class="fw-bold fs-2">Please register using link above to purchase products.</h4>
+<h4 class="fw-bold fs-2 font_meie_script mt-4 mb-4">Please register using link above to purchase products.</h4>
 {% for r in product %}
     <div class="card text-center bg-secondary text-white mb-3">
-        <div class="card-header">
+        <div class="card-header font_meie_script">
         {{ r.prod_name }}
         </div>
         <div class="card-body">

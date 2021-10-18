@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import User, Products
+from app.models import User, Products, MyCart, cart
 
 if __name__ == '__main__':
     app.run()
@@ -9,5 +9,6 @@ def make_shell_context():
     return {
         'db':db,
         'User': User,
-        'Products': Products
+        'Products': Products,
+        'MyCart': MyCart
     }
