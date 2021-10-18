@@ -2,17 +2,18 @@
 {% block content %}
 
 {% for product in products %}
-{% for c in MyCart %}
+{% for c in my_cart %}
     <div class="card text-center bg-secondary text-white mb-3">
         <div class="card-header font_meie_script">
         {{ c.name }}
+        {{ c.content }}
         </div>
         <div class="card-body">
         <blockquote class="blockquote mb-0">
             <p>{{ c.price }}</p>
             <footer class="blockquote-footer text-dark"> ${{ c.user_id }} </footer>
         </blockquote>
-        <a href="/{{r.prod_name}}" class="btn btn-danger">Remove From Card</a>
+        <a href="/{{c.prod_name}}" class="btn btn-danger">Remove From Cart</a>
         </div>
     </div>
 {% endfor %}         

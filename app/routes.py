@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash
-from app.forms import UserInfoForm, LoginForm
+from app.forms import UserInfoForm, LoginForm, PurchaseItemForm
 from app.models import User, Products, cart, MyCart
 from flask_login import login_user, logout_user, current_user, login_required
 
