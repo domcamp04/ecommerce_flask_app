@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash
 from app.forms import UserInfoForm, LoginForm
-from app.models import User, Products, cart, MyCart
+from app.models import User, Products
 from flask_login import login_user, logout_user, current_user, login_required
 
 
@@ -108,77 +108,26 @@ def marinara():
 def vodka_sauce():
     return render_template('vodka_sauce.html')
 
-@app.route('/cart', methods=['GET', 'POST'])
-def my_cart():
-    product = MyCart.query.all()
-    # newcart = MyCart(MyCart.name, MyCart.price, user_id=1)
-    # db.session.add(newcart)
-    # db.session.commit()
-    return render_template('my_cart.html',product=product)
 
-# def getproductitem():
-#     itemid = Products.id
-#     productname = Products.name
-#     productname = MyCart(product_id=itemid)
-#     db.session.add(MyCart)
-#     db.session.commit()
-
-# @app.route('/cart/<int:product_id>', methods=['POST'])
-# def add_to_cart(product_id):
-
-#     product = Products.query.filter(Products.id == product_id)
-#     cart_item = MyCart(product=product)
-#     db.session.add(MyCart)
-#     db.session.commit()
-
-#     return render_template('my_cart.html', product=product)
-
-@app.route('/posts/<int:post_id>')
-def product_detail(product_id):
-    product = Products.query.get_or_404(product_id).first()
-    return render_template('product_detail.html', product=product)
-
-@app.route('/products/<int:product_id>/add')
-def add_item(product_id):
-    product = Products.query.get_or_404(product_id).first()
-    # db.session.add(new_item)
-    db.session.commit()
-    return (url_for('add_item', product_id=product.id))
-    return render_template('my_cart.html', product=product)
-
-
-
-# @app.route('/posts/<int:post_id>/update', methods=['GET', 'POST'])
-# @login_required
-# def post_update(post_id):
-#     post = MyCart.query.get_or_404(post_id)
-#     if post.product.id != current_user.id:
-#         flash('That is not your post. You may only edit posts you have created', 'danger')
-#         return redirect(url_for('my_posts'))
-#     form = MyCart()
-#     if form.validate_on_submit():
-#         new_title = form.title.data
-#         new_content = form.content.data
-#         print(new_title, new_content)
-#         post.title = new_title
-#         post.content = new_content
-#         db.session.commit()
-
-#         flash(f'{post.title} has been updated', 'success')
-#         return redirect(url_for('post_detail', post_id=post.id))
-#     return render_template('post_update.html', post=post, form=form)
-
-
-@app.route('/productss/<int:product_id>/add', methods=['POST'])
+@app.route('/my-cart')
 @login_required
-def item_delete(prod_id):
-    post = MyCart.query.get_or_404(prod_id)
-    if post.product != current_user:
-        flash('You can only delete your own posts', 'danger')
-        return redirect(url_for('my_posts'))
+def my_cart():
+    my_products = current_user.product
+    return render_template('my_cart.html', product= my_products)
 
-    db.session.add(post)
+@app.route('/add-to-cart/<prod_id>')
+@login_required
+def add_to_cart(prod_id):
+    product = Products.query.get_or_404(prod_id)
+    current_user.products.append(product)
     db.session.commit()
-
-    flash(f'{Products.name} has been added', 'success')
     return redirect(url_for('my_cart'))
+
+# @app.route('/cart', methods=['GET', 'POST'])
+# def my_cart():
+#     product = MyCart.query.all()
+#     # newcart = MyCart(MyCart.name, MyCart.price, user_id=1)
+#     # db.session.add(newcart)
+#     # db.session.commit()
+#     return render_template('my_cart.html',product=product)
+
