@@ -163,3 +163,12 @@ def cart_delete(prod_id):
     db.session.commit()
     flash("Item has been removed", 'primary')
     return redirect(url_for('index'))
+
+
+@app.route('/my-cart/<int:prod_id>/cart_item', methods=['POST'])
+@login_required
+def delete_all(prod_id):
+    Cart.query.filter(Products.id == Products.id).delete()
+    db.session.commit()
+    flash("Item has been removed", 'primary')
+    return redirect(url_for('index'))
