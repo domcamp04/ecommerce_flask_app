@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash
 from app.forms import UserInfoForm, LoginForm
-from app.models import User, Products
+from app.models import User, Products, Cart
 from flask_login import login_user, logout_user, current_user, login_required
 
 
@@ -66,7 +66,7 @@ def login():
 
         flash(f'Welcome {user.username}. You have successfully logged in.', 'success')
 
-        return redirect(url_for('view_products'))
+        return redirect(url_for('products'))
 
     return render_template('login.html', login_form=form)
 
@@ -78,10 +78,20 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/products')
-def view_products():
-    product = Products.query.all()
-    title='Products'
-    return render_template('products.html', title=title, product=product)
+def products():
+    all_products = Products.query.all()
+    return render_template('products.html', products=all_products)
+
+@app.route('/products/<prod_id>')
+def product_detail(prod_id):
+    product = Products.query.get_or_404(prod_id)
+    return render_template('product_detail.html', product=product)
+
+# @app.route('/products')
+# def view_products():
+#     product = Products.query.all()
+#     title='Products'
+#     return render_template('products.html', title=title, product=product)
 
 
 @app.route('/Angel Hair')
@@ -118,8 +128,8 @@ def my_cart():
 @app.route('/add-to-cart/<prod_id>')
 @login_required
 def add_to_cart(prod_id):
-    product = Products.query.get_or_404(prod_id)
-    current_user.products.append(product)
+    products = Products.query.get_or_404(prod_id)
+    current_user.product.append(products)
     db.session.commit()
     return redirect(url_for('my_cart'))
 
@@ -131,3 +141,25 @@ def add_to_cart(prod_id):
 #     # db.session.commit()
 #     return render_template('my_cart.html',product=product)
 
+
+# @app.route('/my-cart/<int:prod_id>/delete', methods=['POST'])
+# @login_required
+# def cart_delete(prod_id):
+#     post = Products.query.get_or_404(prod_id)
+#     # if post.author != current_user:
+#     #     flash('You can only delete your own posts', 'danger')
+#     #     return redirect(url_for('my_posts'))
+
+#     db.session.delete(post)
+#     db.session.commit()
+
+#     flash(f'{products.name} has been deleted', 'success')
+#     return redirect(url_for('products'))
+
+@app.route('/my-cart/<int:prod_id>/cart_item', methods=['POST'])
+@login_required
+def cart_delete(prod_id):
+    Cart.query.filter(Cart.id == prod_id).delete()
+    db.session.commit()
+    flash("Item has been removed", 'primary')
+    return redirect(url_for('index'))

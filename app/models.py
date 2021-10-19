@@ -1,9 +1,9 @@
-from app import db, login
+from app import db, login_manager
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
-@login.user_loader
+@login_manager.user_loader
 def get_user(user_id):
     return User.query.get(user_id)
 
@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150), nullable=False, unique=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(256), nullable=False)
-    date_created = db.COlumn(db.DateTime, nullable=False, default=datetime.utcnow)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     product = db.relationship('Products', secondary='cart')
     
     
@@ -46,5 +46,5 @@ class Products(db.Model):
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    products_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
         

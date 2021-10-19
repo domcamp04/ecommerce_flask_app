@@ -1,42 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 {% if current_user.is_authenticated %}
-<h4 class="fw-bold fs-3 mt-4 mb-4 font_meie_script">Hello {{ current_user.username }}: Enjoy our wide range of hand-crafted products.</h4>
+<center><h4 class="fw-bold fs-3 mt-4 mb-4 font_meie_script">Hello {{ current_user.username }}: Enjoy our wide range of hand-crafted products.</h4></center>
 
-{% for r in product %}
-    <div class="card text-center bg-secondary text-white mb-3">
-        <div class="card-header font_meie_script">
-        {{ r.prod_name }}
-        </div>
-        <div class="card-body">
-        <blockquote class="blockquote mb-0">
-            <p>{{ r.description }}</p>
-            <footer class="blockquote-footer text-dark"> ${{ r.price }} </footer>
-        </blockquote>
-        <a href="{{ url_for('add_to_cart', prod_id=product.id) }}" class="btn btn-primary">Add To Cart</a>
-        <a href="/{{r.prod_name}}" class="btn btn-primary">More Information</a>
-        </div>
-    </div>
-{% endfor %}
 
+<div class="row">
+    {% for p in products %}
+    <div class="">
+<center><div class="card bg-secondary mb-3" style="width: 50rem;">
+                <div class="card-body">
+                    <h5 class="card-title font_meie_script">{{ p.name }}</h5>
+                    <p class="card-text">{{ p.description }}</p>
+                    <p class="card-text">${{ p.price }}</p>
+                    <a href="{{ url_for('product_detail', prod_id=p.id) }}" class="btn btn-primary">More Information</a>
+                </div>
+            </div>
+        </center>
+    </div>        
+    {% endfor %}
+</div>
 {% else %}
-<h4 class="fw-bold fs-2 font_meie_script mt-4 mb-4">Please register using link above to purchase products.</h4>
-{% for r in product %}
-    <div class="card text-center bg-secondary text-white mb-3">
-        <div class="card-header font_meie_script">
-        {{ r.prod_name }}
-        </div>
-        <div class="card-body">
-        <blockquote class="blockquote mb-0">
-            <p>{{ r.description }}</p>
-            <footer class="blockquote-footer text-dark"> ${{ r.price }} </footer>
-        </blockquote>
-        <a href="/{{r.prod_name}}" class="btn btn-primary">More Information</a>
-        </div>
-    </div>
-{% endfor %}
+<h1>Welcome, please register using the link about to view products.</h1>
 {% endif %}
+{% endblock content %}
 
-{% endblock %}

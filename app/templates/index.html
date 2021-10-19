@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if current_user.is_authenticated %}
-<center><h4 class="fw-bold fs-1 mt-4 font_meie_script">Welcome to Pasta La Vista {{ current_user.username }}</h4></center>
+<center><h4 class="fw-bold fs-1 mt-4">Welcome to Pasta La Vista {{ current_user.username }}</h4></center>
 
 <center><img class="mb-4" height="" src="{{ url_for('static', filename='pasta-yes.jpeg')}}" alt="Pasta Shop" ></center>
 {% else %}
@@ -15,14 +15,14 @@
 {% for r in product %}
     <div class="card text-center bg-secondary text-white mb-3">
         <div class="card-header font_meie_script">
-        {{ r.prod_name }}
+        {{ r.name }}
         </div>
         <div class="card-body">
         <blockquote class="blockquote mb-0">
             <p>{{ r.description }}</p>
             <footer class="blockquote-footer text-dark"> ${{ r.price }} </footer>
         </blockquote>
-        <a href="/{{r.prod_name}}" class="btn btn-primary">More Information</a>
+        <a href="{{ url_for('product_detail', prod_id=r.id) }}" class="btn btn-primary">More Information</a>
         </div>
     </div>
 {% endfor %}
